@@ -6,10 +6,12 @@ const drawerWidth = 240;
 export const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
+            height: '100vh',
             display: 'flex',
             backgroundColor: '#333'
         },
         appBar: {
+            backgroundColor: '#222',
             zIndex: theme.zIndex.drawer + 1,
             transition: theme.transitions.create(['width', 'margin'], {
                 easing: theme.transitions.easing.sharp,
@@ -17,6 +19,7 @@ export const useStyles = makeStyles((theme: Theme) =>
             }),
         },
         appBarShift: {
+            backgroundColor: '#222',
             marginLeft: drawerWidth,
             width: `calc(100% - ${drawerWidth}px)`,
             transition: theme.transitions.create(['width', 'margin'], {
@@ -25,17 +28,23 @@ export const useStyles = makeStyles((theme: Theme) =>
             }),
         },
         menuButton: {
+            color: '#00A8A4',
             marginRight: 36,
+        },
+        icon: {
+            color: '#00A8A4',
         },
         hide: {
             display: 'none',
         },
         drawer: {
+            backgroundColor: '#111',
             width: drawerWidth,
             flexShrink: 0,
             whiteSpace: 'nowrap',
         },
         drawerOpen: {
+            backgroundColor: '#111',
             width: drawerWidth,
             transition: theme.transitions.create('width', {
                 easing: theme.transitions.easing.sharp,
@@ -43,6 +52,7 @@ export const useStyles = makeStyles((theme: Theme) =>
             }),
         },
         drawerClose: {
+            backgroundColor: '#111',
             transition: theme.transitions.create('width', {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,
@@ -62,6 +72,7 @@ export const useStyles = makeStyles((theme: Theme) =>
             ...theme.mixins.toolbar,
         },
         content: {
+            height: '100%',
             flexGrow: 1,
             padding: theme.spacing(3),
         },
