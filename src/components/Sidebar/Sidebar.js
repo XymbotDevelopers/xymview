@@ -82,15 +82,24 @@ export function Sidebar(){
                     </IconButton>
                 </div>
                 <List>
-                    <ListItem button onClick={()=> history.push('/live')}>
+                    <ListItem button onClick={()=> {
+                        history.push('/live');
+                        window.location.reload()
+                    }}>
                         <ListItemIcon><EqualizerIcon style={{color: '#00A8A4'}}/></ListItemIcon>
                         <ListItemText primary={"Producción"} style={{color: '#00A8A4'}}/>
                     </ListItem>
-                    <ListItem button onClick={()=> history.push('/operator')}>
+                    <ListItem button onClick={()=> {
+                        history.push('/operator');
+                        window.location.reload()
+                    }}>
                         <ListItemIcon><PeopleIcon style={{color: '#00A8A4'}}/></ListItemIcon>
                         <ListItemText primary={"Operarios"} style={{color: '#00A8A4'}}/>
                     </ListItem>
-                    <ListItem button onClick={()=> history.push('/scheduling')}>
+                    <ListItem button onClick={()=> {
+                        history.push('/scheduling');
+                        window.location.reload()
+                    }}>
                         <ListItemIcon><ScheduleIcon style={{color: '#00A8A4'}}/></ListItemIcon>
                         <ListItemText primary={"Scheduling"} style={{color: '#00A8A4'}}/>
                     </ListItem>
