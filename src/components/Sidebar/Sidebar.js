@@ -20,9 +20,12 @@ import LogoutIcon from "@material-ui/icons/ExitToApp";
 import React from "react";
 import {useStyles} from "../../AppStyles";
 import {useTheme} from "@material-ui/core/styles";
+import {createBrowserHistory} from "history";
+import history from "../../utils/history";
 
 
 export function Sidebar(){
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -79,15 +82,15 @@ export function Sidebar(){
                     </IconButton>
                 </div>
                 <List>
-                    <ListItem button>
+                    <ListItem button onClick={()=> history.push('/live')}>
                         <ListItemIcon><EqualizerIcon style={{color: '#00A8A4'}}/></ListItemIcon>
                         <ListItemText primary={"Producción"} style={{color: '#00A8A4'}}/>
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={()=> history.push('/operator')}>
                         <ListItemIcon><PeopleIcon style={{color: '#00A8A4'}}/></ListItemIcon>
                         <ListItemText primary={"Operarios"} style={{color: '#00A8A4'}}/>
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={()=> history.push('/scheduling')}>
                         <ListItemIcon><ScheduleIcon style={{color: '#00A8A4'}}/></ListItemIcon>
                         <ListItemText primary={"Scheduling"} style={{color: '#00A8A4'}}/>
                     </ListItem>

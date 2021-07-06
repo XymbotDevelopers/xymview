@@ -3,7 +3,9 @@ import {red} from "@material-ui/core/colors";
 
 
 const drawerWidth = 240;
+
 export const useStyles = makeStyles((theme: Theme) =>
+
     createStyles({
         root: {
             height: '100vh',

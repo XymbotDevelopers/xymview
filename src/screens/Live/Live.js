@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from "../../components/Sidebar/Sidebar";
 import {useStyles} from "./LiveStyles";
 
 export default function Live() {
