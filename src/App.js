@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Route, Router, Switch} from 'react-router-dom';
 import Home from "./screens/Home/Home";
 import Live from "./screens/Live/Live";
@@ -6,14 +6,10 @@ import {useStyles} from './AppStyles'
 import {Sidebar} from "./components/Sidebar/Sidebar";
 import Operator from "./screens/Operator/Operator";
 import Scheduling from "./screens/Scheduling/Scheduling";
-import history from "./utils/history";
 import {createBrowserHistory} from "history";
 
 export default function App() {
     const classes = useStyles();
-    useEffect(()=>{
-        console.log(history)
-    })
     const history = createBrowserHistory();
 
     let router = () => {

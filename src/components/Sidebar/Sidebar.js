@@ -57,7 +57,7 @@ export function Sidebar(){
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Typography variant="h6" noWrap>
+                    <Typography variant="h6" >
                         Xymview
                     </Typography>
                 </Toolbar>

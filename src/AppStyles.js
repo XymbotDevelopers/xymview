@@ -8,7 +8,8 @@ export const useStyles = makeStyles((theme: Theme) =>
 
     createStyles({
         root: {
-            height: '100vh',
+            height: '100%',
+            width: '100%',
             display: 'flex',
             backgroundColor: '#333'
         },
