@@ -46,7 +46,7 @@ export function ProductionChart(props) {
     return (
         <Card className={classes.card}>
             <CardHeader title={props.title} titleTypographyProps={{variant: 'body1'}} className={classes.cardTitle}/>
-            <Chart options={options} series={series} type="scatter" height={350}/>
+            <Chart options={options} series={series} type="scatter" height={300}/>
         </Card>
     )
 

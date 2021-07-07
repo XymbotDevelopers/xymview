@@ -12,7 +12,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     cardTitle:{
         color: '#005c59',
-        padding: '6px !important',
+        padding: '6px ',
         textAlign: 'center',
         fontSize: '10px'
     },

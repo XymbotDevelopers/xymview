@@ -28,12 +28,12 @@ export default function Live() {
 
     const filterCard = () => {
         return (
-            <Grid container xs={12}>
+            <Grid container>
                 <Grid item xs={12} sm={3}>
                     <div className={classes.filterField}>
                         <Typography className={classes.filterFieldText}>Pieza</Typography>
                         <Select value={10} className={classes.filterFieldSelect} onChange={() => console.log("cambia")}>
-                            <MenuItem  value={10}>Ten</MenuItem>
+                            <MenuItem value={10}>Ten</MenuItem>
                             <MenuItem value={20}>Twenty</MenuItem>
                             <MenuItem value={30}>Thirty</MenuItem>
                         </Select>
@@ -77,36 +77,40 @@ export default function Live() {
     return (
         <div>
             <Typography variant={"h4"} className={classes.title}>LIVE</Typography>
-
-            <Grid container xs={12}>
+            <Grid container>
                 {filterCard()}
-                <Grid xs={12} md={6} lg={3}>
+                <Grid item xs={12} md={6} lg={3}>
                     <ChartText title={"Piezas"} text={total}></ChartText>
                 </Grid>
-                <Grid xs={12} md={6} lg={3}>
+                <Grid item xs={12} md={6} lg={3}>
                     <ChartText title={"Piezas/hora"} text={totalHour}></ChartText>
                 </Grid>
-                <Grid xs={12} md={6} lg={3}>
+                <Grid item xs={12} md={6} lg={3}>
                     <ChartText title={"Consumo materias primas"} text={`${consumption} kg`}></ChartText>
                 </Grid>
-                <Grid xs={12} md={6} lg={3}>
+                <Grid item xs={12} md={6} lg={3}>
                     <ChartText title={"Rendimiento"} text={performance}></ChartText>
                 </Grid>
-                <Grid xs={12} lg={9}>
-                    <ProductionChart title={"Producción"}></ProductionChart>
-                </Grid>
-                <Grid xs={12} md={6} lg={3}>
-                    <Grid lg={12}>
-                        <ChartText title={"Pieza"} text={description}></ChartText>
+                <Grid container>
+                    <Grid item xs={12} lg={9}>
+                        <ProductionChart title={"Producción"}></ProductionChart>
                     </Grid>
-                    <Grid lg={12}>
-                        <ChartText title={"Plan"} text={totalPlan}></ChartText>
-                    </Grid>
-                    <Grid lg={12}>
-                        <ChartText title={"Producidas"} text={producedPlan}></ChartText>
-                    </Grid>
-                    <Grid lg={12}>
-                        <ChartText title={"Estado del lote"} text={`${(producedPlan / totalPlan) * 100}%`}></ChartText>
+                    <Grid item xs={12} lg={3}>
+                        <Grid container>
+                            <Grid item xs={12} md={12}>
+                                <ChartText title={"Pieza"} text={description}></ChartText>
+                            </Grid>
+                            <Grid item xs={6} md={12}>
+                                <ChartText title={"Plan"} text={totalPlan}></ChartText>
+                            </Grid>
+                            <Grid item xs={6} md={12}>
+                                <ChartText title={"Producidas"} text={producedPlan}></ChartText>
+                            </Grid>
+                            <Grid item xs={6} md={12}>
+                                <ChartText title={"Estado del lote"}
+                                           text={`${(producedPlan / totalPlan) * 100}%`}></ChartText>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
 

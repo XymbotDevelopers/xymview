@@ -20,7 +20,6 @@ import LogoutIcon from "@material-ui/icons/ExitToApp";
 import React from "react";
 import {useStyles} from "../../AppStyles";
 import {useTheme} from "@material-ui/core/styles";
-import {createBrowserHistory} from "history";
 import history from "../../utils/history";
 
 
