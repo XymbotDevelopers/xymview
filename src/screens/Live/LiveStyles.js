@@ -23,19 +23,36 @@ export const useStyles = makeStyles((theme) => ({
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
     },
-    card:{
+    card: {
         backgroundColor: '#c4c4c4',
         margin: '1em',
-        height:'80%',
+        height: '80%',
         display: 'flex',
         flexDirection: 'column',
 
     },
-    cardTitle:{
+    cardTitle: {
         color: '#005c59',
         padding: '6px !important',
         textAlign: 'center',
         fontSize: '10px'
+    },
+    title: {
+        color: 'lightgray',
+    },
+    filterField: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    filterFieldText:{
+        color: 'white'
+    },
+    filterFieldSelect:{
+        marginLeft: '1em',
+        padding: ' 4px',
+        borderRadius: ' 0.5em',
+        backgroundColor: 'white'
     }
 
 }));
