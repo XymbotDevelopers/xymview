@@ -92,7 +92,7 @@ export default function Live() {
                     <ChartText title={"Rendimiento"} text={performance}></ChartText>
                 </Grid>
                 <Grid container>
-                    <Grid item xs={12} lg={9}>
+                    <Grid item xs={12} lg={9} >
                         <ProductionChart title={"Producción"}></ProductionChart>
                     </Grid>
                     <Grid item xs={12} lg={3}>
@@ -100,19 +100,20 @@ export default function Live() {
                             <Grid item xs={12} md={12}>
                                 <ChartText title={"Pieza"} text={description}></ChartText>
                             </Grid>
-                            <Grid item xs={6} md={12}>
+                            <Grid item xs={6} md={6}>
                                 <ChartText title={"Plan"} text={totalPlan}></ChartText>
                             </Grid>
-                            <Grid item xs={6} md={12}>
+                            <Grid item xs={6} md={6}>
                                 <ChartText title={"Producidas"} text={producedPlan}></ChartText>
                             </Grid>
-                            <Grid item xs={6} md={12}>
+                            <Grid item xs={12} md={12}>
                                 <ChartText title={"Estado del lote"}
                                            text={`${(producedPlan / totalPlan) * 100}%`}></ChartText>
                             </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
+
 
             </Grid>
         </div>

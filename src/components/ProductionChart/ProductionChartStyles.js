@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme) => ({
         margin: '1em',
         display: 'flex',
         flexDirection: 'column',
-        padding: '1em'
+        padding: '1em',
 
     },
     cardTitle:{
