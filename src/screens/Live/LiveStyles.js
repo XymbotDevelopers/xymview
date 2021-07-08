@@ -42,16 +42,14 @@ export const useStyles = makeStyles((theme) => ({
         color: 'lightgray',
     },
     filterField: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+        padding: '1em'
+
     },
     filterFieldText:{
         color: 'white'
     },
     filterFieldSelect:{
-        marginLeft: '1em',
-        padding: ' 4px',
+        width: '50%',
         borderRadius: ' 0.5em',
         backgroundColor: 'white'
     }

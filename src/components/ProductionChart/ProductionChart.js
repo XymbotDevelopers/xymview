@@ -3,6 +3,7 @@ import React from "react";
 import {useStyles} from "./ProductionChartStyles";
 import Chart from "react-apexcharts";
 
+
 export function ProductionChart(props) {
     const classes = useStyles();
 
@@ -46,7 +47,7 @@ export function ProductionChart(props) {
     return (
         <Card className={classes.card}>
             <CardHeader title={props.title} titleTypographyProps={{variant: 'body1'}} className={classes.cardTitle}/>
-            <Chart options={options} series={series} type="scatter" height={420}/>
+            <Chart options={options} series={series} type="scatter" height={460}/>
         </Card>
     )
 
