@@ -6,6 +6,7 @@ import {ChartText} from "../../components/ChartText/ChartText"
 import {GaugeChart} from "../../components/GaugeChart/GaugeChart"
 import {ProductionChart} from "../../components/ProductionChart/ProductionChart";
 import {fetch} from "../../utils/fetch";
+import {ChartOperatorsProduction} from "../../components/ChartOperatorsProduction/ChartOperatorsProduction";
 
 export default function Live() {
     const classes = useStyles();
@@ -35,7 +36,7 @@ export default function Live() {
 
     const referencias = [
         {
-            description: "Trampilla",
+            description: "Rampa",
             code: "1"
         },
         {
@@ -94,7 +95,7 @@ export default function Live() {
                     <div className={classes.filterField}>
                         <Typography className={classes.filterFieldText}>Operarios</Typography>
                         <Select  value={10} className={classes.filterFieldSelect}>
-                            <MenuItem value={10}>Ten</MenuItem>
+                            <MenuItem value={10}>David</MenuItem>
                             <MenuItem value={20}>Twenty</MenuItem>
                             <MenuItem value={30}>Thirty</MenuItem>
                         </Select>
@@ -102,11 +103,11 @@ export default function Live() {
                 </Grid>
                 <Grid item xs={12} sm={3}>
                     <div className={classes.filterField}>
-                        <Typography className={classes.filterFieldText}>Pieza</Typography>
+                        <Typography className={classes.filterFieldText}>Prensa</Typography>
                         <Select value={10} className={classes.filterFieldSelect}>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={1}>1</MenuItem>
+                            <MenuItem value={2}>2</MenuItem>
+                            <MenuItem value={3}>3</MenuItem>
                         </Select>
                     </div>
                 </Grid>
@@ -163,6 +164,16 @@ export default function Live() {
                             </Grid>
                         </Grid>
                     </Grid>
+                </Grid>
+
+                <Grid item xs={6} >
+                    <ChartOperatorsProduction title={"Rendimiento operarios"}></ChartOperatorsProduction>
+                </Grid>
+                <Grid item xs={6} >
+                    <ChartOperatorsProduction title={"Rendimiento piezas"}></ChartOperatorsProduction>
+                </Grid>
+                <Grid item xs={6} >
+                    <ChartOperatorsProduction title={"Rendimiento turnos"}></ChartOperatorsProduction>
                 </Grid>
 
 
