@@ -41,17 +41,5 @@ export const useStyles = makeStyles((theme) => ({
     title: {
         color: 'lightgray',
     },
-    filterField: {
-        padding: '1em'
-
-    },
-    filterFieldText:{
-        color: 'white'
-    },
-    filterFieldSelect:{
-        width: '50%',
-        borderRadius: ' 0.5em',
-        backgroundColor: 'white'
-    }
 
 }));

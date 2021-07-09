@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useStyles} from "./LiveStyles";
 import Typography from "@material-ui/core/Typography";
-import {Card, CardHeader, Grid, InputLabel, MenuItem, Select} from "@material-ui/core";
+import {Card, CardHeader, Grid, InputLabel, MenuItem, Select, TextField} from "@material-ui/core";
 import {ChartText} from "../../components/ChartText/ChartText"
 import {GaugeChart} from "../../components/GaugeChart/GaugeChart"
 import {ProductionChart} from "../../components/ProductionChart/ProductionChart";
@@ -75,7 +75,7 @@ export default function Live() {
     const filterCard = () => {
         return (
             <Grid container>
-                <Grid item xs={12} sm={3}>
+                <Grid item >
                     <div className={classes.filterField}>
                         <InputLabel id="select-piece" className={classes.filterFieldText}>Pieza</InputLabel>
                         <Select labelId="select-piece"
@@ -92,35 +92,68 @@ export default function Live() {
                         </Select>
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={3}>
+                <Grid item >
                     <div className={classes.filterField}>
                         <Typography className={classes.filterFieldText}>Operarios</Typography>
                         <Select value={10} className={classes.filterFieldSelect}>
                             <MenuItem value={10}>David</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={20}>Gerardo</MenuItem>
+                            <MenuItem value={30}>Alberto</MenuItem>
+                            <MenuItem value={30}>Fernando</MenuItem>
                         </Select>
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={3}>
+                <Grid item >
                     <div className={classes.filterField}>
                         <Typography className={classes.filterFieldText}>Prensa</Typography>
-                        <Select value={10} className={classes.filterFieldSelect}>
+                        <Select value={1} className={classes.filterFieldSelect}>
                             <MenuItem value={1}>1</MenuItem>
                             <MenuItem value={2}>2</MenuItem>
                             <MenuItem value={3}>3</MenuItem>
                         </Select>
                     </div>
                 </Grid>
-                <Grid item xs={12} sm={3}>
-                    <div className={classes.filterField}>
-                        <Typography className={classes.filterFieldText}>Pieza</Typography>
-                        <Select value={10} className={classes.filterFieldSelect}>
+                <Grid item >
+                        <InputLabel id="demo-simple-select-outlined-label" style={{color:"aliceblue"}}>Pieza</InputLabel>
+                        <Select
+                            style={{color:"aliceblue"}}
+                            labelId="demo-simple-select-outlined-label"
+                            id="demo-simple-select-outlined"
+                            value={filter.piece}
+                            onChange={handleChange}
+                            label="Age"
+                        >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
                             <MenuItem value={10}>Ten</MenuItem>
                             <MenuItem value={20}>Twenty</MenuItem>
                             <MenuItem value={30}>Thirty</MenuItem>
                         </Select>
-                    </div>
+                </Grid>
+                <Grid item >
+                    <TextField
+                        id="datetime-local"
+                        label="Fecha inicio"
+                        type="datetime-local"
+                        defaultValue="2017-05-24T10:30"
+                        className={classes.textField}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </Grid>
+                <Grid item >
+                    <TextField
+                        id="datetime-local"
+                        label="Fecha fin"
+                        type="datetime-local"
+                        defaultValue="2017-05-24T10:30"
+                        className={classes.textField}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
                 </Grid>
             </Grid>
         );
@@ -168,7 +201,7 @@ export default function Live() {
                     </Grid>
                 </Grid>
                 <Grid item xs={12} style={{display: "flex", justifyContent: "center"}}>
-                        <ProductionPlanTable title={"Table"}></ProductionPlanTable>
+                    <ProductionPlanTable title={"Table"}></ProductionPlanTable>
                 </Grid>
                 <Grid item xs={12}>
                     <ChartOperatorsProduction title={"Rendimiento operarios"}></ChartOperatorsProduction>
