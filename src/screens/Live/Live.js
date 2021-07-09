@@ -7,6 +7,7 @@ import {GaugeChart} from "../../components/GaugeChart/GaugeChart"
 import {ProductionChart} from "../../components/ProductionChart/ProductionChart";
 import {fetch} from "../../utils/fetch";
 import {ChartOperatorsProduction} from "../../components/ChartOperatorsProduction/ChartOperatorsProduction";
+import ProductionPlanTable from '../../components/ProductionPlanTable/ProductionPlanTable'
 
 export default function Live() {
     const classes = useStyles();
@@ -15,7 +16,7 @@ export default function Live() {
     const [totalHour, setTotalHour] = useState(0);
     const [consumption, setConsumption] = useState(0);
     const [performance, setPerformance] = useState(0);
-    const [description, setDescription] = useState("Rampa");
+    const [description, setDescription] = useState("Ram");
     const [totalPlan, setTotalPlan] = useState(100);
     const [producedPlan, setProducedPlan] = useState(40);
 
@@ -94,7 +95,7 @@ export default function Live() {
                 <Grid item xs={12} sm={3}>
                     <div className={classes.filterField}>
                         <Typography className={classes.filterFieldText}>Operarios</Typography>
-                        <Select  value={10} className={classes.filterFieldSelect}>
+                        <Select value={10} className={classes.filterFieldSelect}>
                             <MenuItem value={10}>David</MenuItem>
                             <MenuItem value={20}>Twenty</MenuItem>
                             <MenuItem value={30}>Thirty</MenuItem>
@@ -138,7 +139,7 @@ export default function Live() {
                     <ChartText title={"Piezas/hora"} text={totalHour}></ChartText>
                 </Grid>
                 <Grid item xs={12} md={6} lg={3}>
-                    <ChartText title={"Consumo materias primas"} text={`${consumption} kg`}></ChartText>
+                    <ChartText title={"Consumo"} text={`${consumption} kg`}></ChartText>
                 </Grid>
                 <Grid item xs={12} md={6} lg={3}>
                     <ChartText title={"Rendimiento"} text={performance}></ChartText>
@@ -159,20 +160,23 @@ export default function Live() {
                                 <ChartText title={"Producidas"} text={producedPlan}></ChartText>
                             </Grid>
                             <Grid item xs={12} md={12}>
-                                <GaugeChart title={"Completado"} completed = {(producedPlan/totalPlan) * 100}></GaugeChart>
+                                <GaugeChart title={"Completado"}
+                                            completed={(producedPlan / totalPlan) * 100}></GaugeChart>
 
                             </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-
-                <Grid item xs={6} >
+                <Grid item xs={12} style={{display: "flex", justifyContent: "center"}}>
+                        <ProductionPlanTable title={"Table"}></ProductionPlanTable>
+                </Grid>
+                <Grid item xs={12}>
                     <ChartOperatorsProduction title={"Rendimiento operarios"}></ChartOperatorsProduction>
                 </Grid>
-                <Grid item xs={6} >
+                <Grid item xs={12}>
                     <ChartOperatorsProduction title={"Rendimiento piezas"}></ChartOperatorsProduction>
                 </Grid>
-                <Grid item xs={6} >
+                <Grid item xs={12}>
                     <ChartOperatorsProduction title={"Rendimiento turnos"}></ChartOperatorsProduction>
                 </Grid>
 
