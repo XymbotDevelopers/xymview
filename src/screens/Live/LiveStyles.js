@@ -41,5 +41,11 @@ export const useStyles = makeStyles((theme) => ({
     title: {
         color: 'lightgray',
     },
+    filterCard: {
+        backgroundColor: "#D1F2EB",
+        padding: "1em",
+        margin: "1em",
+        borderRadius: "3px"
+    }
 
 }));

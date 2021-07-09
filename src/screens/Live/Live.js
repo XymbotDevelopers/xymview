@@ -74,7 +74,7 @@ export default function Live() {
 
     const filterCard = () => {
         return (
-            <Grid container>
+            <Grid container className={classes.filterCard}>
                 <Grid item >
                     <div className={classes.filterField}>
                         <InputLabel id="select-piece" className={classes.filterFieldText}>Pieza</InputLabel>
