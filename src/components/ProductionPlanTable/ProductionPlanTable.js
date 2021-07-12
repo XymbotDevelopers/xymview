@@ -157,7 +157,7 @@ const useStyles = makeStyles((theme) => ({
 
         },
         [theme.breakpoints.down('sm')]: {
-            width: '65vw',
+            width: '68vw',
 
         },
         width: '90vw',

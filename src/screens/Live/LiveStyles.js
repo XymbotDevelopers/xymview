@@ -24,14 +24,6 @@ export const useStyles = makeStyles((theme) => ({
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
     },
-    card: {
-        backgroundColor: '#c4c4c4',
-        margin: '1em',
-        height: '80%',
-        display: 'flex',
-        flexDirection: 'column',
-
-    },
     cardTitle: {
         color: '#005c59',
         padding: '6px !important',
@@ -42,10 +34,18 @@ export const useStyles = makeStyles((theme) => ({
         color: 'lightgray',
     },
     filterCard: {
-        backgroundColor: "#D1F2EB",
-        padding: "1em",
-        margin: "1em",
-        borderRadius: "3px"
+        backgroundColor: '#D1F2EB',
+        margin: '1em',
+        padding: '0.75em',
+        borderRadius: "5px"
+    },
+    filterField: {
+        width:'100%',
+        marginTop: '0.5em',
+        padding: '1em'
+    },
+    filterFieldSelect:{
+        width: '100%'
     }
 
 }));

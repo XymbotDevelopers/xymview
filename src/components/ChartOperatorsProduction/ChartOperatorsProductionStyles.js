@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
     card:{
-        backgroundColor: '#D1F2EB   ',
+        backgroundColor: '#D1F2EB',
         margin: '1em',
         display: 'flex',
         flexDirection: 'column',
