@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {useStyles} from "./SchedulingStyles";
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import Typography from "@material-ui/core/Typography";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Container from "@material-ui/core/Container";
 
 export default function Scheduling() {
     const classes = useStyles();
@@ -29,6 +31,9 @@ export default function Scheduling() {
 
 
     return (
+        <Container component="main" maxWidth="sm">
+            <CssBaseline/>
+            <div className={classes.paper}>
         <Formik
             initialValues={{id: '', prensa: '', piezas: '', date_start: '', date_end: ''}}
             validate={values => {
@@ -77,6 +82,7 @@ export default function Scheduling() {
                 </Form>
             )}
         </Formik>
+            </div></Container>
 
 
     );
