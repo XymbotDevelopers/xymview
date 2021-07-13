@@ -8,6 +8,7 @@ import {ProductionChart} from "../../components/ProductionChart/ProductionChart"
 import {fetch} from "../../utils/fetch";
 import {ChartOperatorsProduction} from "../../components/ChartOperatorsProduction/ChartOperatorsProduction";
 import ProductionPlanTable from '../../components/ProductionPlanTable/ProductionPlanTable'
+import Container from "@material-ui/core/Container";
 
 export default function Live() {
     const classes = useStyles();
@@ -82,105 +83,109 @@ export default function Live() {
 
     const filterCard = () => {
         return (
-            <Grid container className={classes.filterCard}>
-                <Grid item xs={12} lg={3}>
-                    <div className={classes.filterField}>
-                        <InputLabel id="select-piece" className={classes.filterFieldText}>Pieza</InputLabel>
-                        <Select labelId="select-piece"
-                                value={filter.piece} className={classes.filterFieldSelect} onChange={handleChange}
-                                inputProps={{name: 'piece'}}>
-                            <MenuItem value={0}>TODAS</MenuItem>
-                            {referencias.map((referencia) => {
-                                return (
-                                    <MenuItem value={referencia.code}>{referencia.description}</MenuItem>
-                                )
+            <Container component="main" maxWidth="sm">
 
-                            })}
+                <Grid container className={classes.filterCard}>
+                    <Grid item xs={12} lg={3}>
+                        <div className={classes.filterField}>
+                            <InputLabel id="select-piece" className={classes.filterFieldText}>Pieza</InputLabel>
+                            <Select labelId="select-piece"
+                                    value={filter.piece} className={classes.filterFieldSelect} onChange={handleChange}
+                                    inputProps={{name: 'piece'}}>
+                                <MenuItem value={0}>TODAS</MenuItem>
+                                {referencias.map((referencia) => {
+                                    return (
+                                        <MenuItem value={referencia.code}>{referencia.description}</MenuItem>
+                                    )
 
-                        </Select>
-                    </div>
+                                })}
+
+                            </Select>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} lg={3}>
+                        <div className={classes.filterField}>
+                            <InputLabel id="select-piece" className={classes.filterFieldText}>Operarios</InputLabel>
+                            <Select labelId="select-piece"
+                                    value={filter.operators} className={classes.filterFieldSelect}
+                                    onChange={handleChange}
+                                    inputProps={{name: 'operators'}}>
+                                <MenuItem value={0}>TODAS</MenuItem>
+                                {names.map((name) => {
+                                    return (
+                                        <MenuItem value={name}>{name}</MenuItem>
+                                    )
+
+                                })}
+
+                            </Select>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} lg={3}>
+                        <div className={classes.filterField}>
+                            <InputLabel id="select-piece" className={classes.filterFieldText}>Prensa</InputLabel>
+                            <Select labelId="select-piece"
+                                    value={filter.press} className={classes.filterFieldSelect} onChange={handleChange}
+                                    inputProps={{name: 'press'}}>
+                                <MenuItem value={0}>TODAS</MenuItem>
+                                {presses.map((press) => {
+                                    return (
+                                        <MenuItem value={press}>{press}</MenuItem>
+                                    )
+
+                                })}
+
+                            </Select>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} lg={3}>
+                        <div className={classes.filterField}>
+                            <InputLabel id="select-piece" className={classes.filterFieldText}>Turno</InputLabel>
+                            <Select labelId="select-piece"
+                                    value={filter.turn} className={classes.filterFieldSelect} onChange={handleChange}
+                                    inputProps={{name: 'turn'}}>
+                                <MenuItem value={0}>TODAS</MenuItem>
+                                {turns.map((turn) => {
+                                    return (
+                                        <MenuItem value={turn}>{turn}</MenuItem>
+                                    )
+
+                                })}
+
+                            </Select>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
+                        <div className={classes.filterField}>
+                            <TextField
+                                id="datetime-local"
+                                label="Fecha inicio"
+                                type="datetime-local"
+                                defaultValue="2017-05-24T10:30"
+                                className={classes.filterFieldSelect}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </div>
+
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
+                        <div className={classes.filterField}>
+                            <TextField
+                                id="datetime-local"
+                                label="Fecha fin"
+                                type="datetime-local"
+                                defaultValue="2017-05-24T10:30"
+                                className={classes.filterFieldSelect}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </div>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} lg={3}>
-                    <div className={classes.filterField}>
-                        <InputLabel id="select-piece" className={classes.filterFieldText}>Operarios</InputLabel>
-                        <Select labelId="select-piece"
-                                value={filter.operators} className={classes.filterFieldSelect} onChange={handleChange}
-                                inputProps={{name: 'operators'}}>
-                            <MenuItem value={0}>TODAS</MenuItem>
-                            {names.map((name) => {
-                                return (
-                                    <MenuItem value={name}>{name}</MenuItem>
-                                )
-
-                            })}
-
-                        </Select>
-                    </div>
-                </Grid>
-                <Grid item xs={12} lg={3}>
-                    <div className={classes.filterField}>
-                        <InputLabel id="select-piece" className={classes.filterFieldText}>Prensa</InputLabel>
-                        <Select labelId="select-piece"
-                                value={filter.press} className={classes.filterFieldSelect} onChange={handleChange}
-                                inputProps={{name: 'press'}}>
-                            <MenuItem value={0}>TODAS</MenuItem>
-                            {presses.map((press) => {
-                                return (
-                                    <MenuItem value={press}>{press}</MenuItem>
-                                )
-
-                            })}
-
-                        </Select>
-                    </div>
-                </Grid>
-                <Grid item xs={12} lg={3}>
-                    <div className={classes.filterField}>
-                        <InputLabel id="select-piece" className={classes.filterFieldText}>Turno</InputLabel>
-                        <Select labelId="select-piece"
-                                value={filter.turn} className={classes.filterFieldSelect} onChange={handleChange}
-                                inputProps={{name: 'turn'}}>
-                            <MenuItem value={0}>TODAS</MenuItem>
-                            {turns.map((turn) => {
-                                return (
-                                    <MenuItem value={turn}>{turn}</MenuItem>
-                                )
-
-                            })}
-
-                        </Select>
-                    </div>
-                </Grid>
-                <Grid item xs={12} lg={6}>
-                    <div className={classes.filterField}>
-                        <TextField
-                            id="datetime-local"
-                            label="Fecha inicio"
-                            type="datetime-local"
-                            defaultValue="2017-05-24T10:30"
-                            className={classes.filterFieldSelect}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
-                    </div>
-
-                </Grid>
-                <Grid item xs={12} lg={6}>
-                    <div className={classes.filterField}>
-                    <TextField
-                        id="datetime-local"
-                        label="Fecha fin"
-                        type="datetime-local"
-                        defaultValue="2017-05-24T10:30"
-                        className={classes.filterFieldSelect}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                    </div>
-                </Grid>
-            </Grid>
+            </Container>
         );
 
     }

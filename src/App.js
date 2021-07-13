@@ -18,37 +18,56 @@ export default function App() {
     const history = createBrowserHistory();
     const {currentUser} = useAuth();
 
+    let routesGuest = () => {
+        return (
+            <Switch>
+                <Route exact path="/login" component={Login}/>
+            </Switch>
+        )
+
+    }
+
+    let routesAdmin = () => {
+        return(
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/register" component={Register}/>
+                <Route exact path="/live" component={Live}/>
+                <Route exact path="/operator" component={Operator}/>
+                <Route exact path="/scheduling" component={Scheduling}/>
+                <Route exact path="/profile" component={Profile}/>
+            </Switch>
+        )
+
+    }
+
+    let routesOperator = () =>{
+        return(
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/live" component={Live}/>
+                <Route exact path="/operator" component={Operator}/>
+                <Route exact path="/scheduling" component={Scheduling}/>
+                <Route exact path="/profile" component={Profile}/>
+            </Switch>
+        )
+    }
+
+
     const routes = () => {
         switch (currentUser?.email) {
             case undefined:
                 return (
-                    <Switch>
-                        <Route exact path="/login" component={Login}/>
-                    </Switch>
+                    routesGuest()
                 )
             case('admin@pinazo.com'):
                 return (
-                    <Switch>
-                        <Route exact path="/" component={Home}/>
-                        <Route exact path="/login" component={Login}/>
-                        <Route exact path="/register" component={Register}/>
-                        <Route exact path="/live" component={Live}/>
-                        <Route exact path="/operator" component={Operator}/>
-                        <Route exact path="/scheduling" component={Scheduling}/>
-                        <Route exact path="/profile" component={Profile}/>
-
-                    </Switch>
+                    routesAdmin()
                 );
             default:
-
                 return (
-                    <Switch>
-                        <Route exact path="/" component={Home}/>
-                        <Route exact path="/live" component={Live}/>
-                        <Route exact path="/operator" component={Operator}/>
-                        <Route exact path="/scheduling" component={Scheduling}/>
-                        <Route exact path="/profile" component={Profile}/>
-                    </Switch>
+                    routesOperator()
                 )
         }
     }
