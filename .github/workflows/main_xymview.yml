@@ -21,7 +21,7 @@ jobs:
       with:
         node-version: '12.x'
 
-    - name: npm install, build, and test
+    - name: yarn install, build
       run: |
         yarn install
         yarn run build --if-present
