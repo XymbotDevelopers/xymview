@@ -19,7 +19,7 @@ jobs:
     - name: Set up Node.js version
       uses: actions/setup-node@v1
       with:
-        node-version: '14.x'
+        node-version: '12.x'
 
     - name: npm install, build, and test
       run: |
@@ -52,5 +52,5 @@ jobs:
       with:
         app-name: 'xymview'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1d0d0078252449daaf7842ca4aa2c484 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_3cdc87a7f568407b8e613f5e305fff29 }}
         package: .
