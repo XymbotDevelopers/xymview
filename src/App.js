@@ -9,35 +9,64 @@ import Scheduling from "./screens/Scheduling/Scheduling";
 import {createBrowserHistory} from "history";
 import Login from "./screens/Login/Login";
 import Register from "./screens/Register/Register";
-import {AuthProvider} from "./context/AuthContext";
+import {useAuth} from "./context/AuthContext";
+
 
 export default function App() {
     const classes = useStyles();
     const history = createBrowserHistory();
+    const {currentUser} = useAuth();
+
+    const routes = () => {
+        switch (currentUser?.email) {
+            case undefined:
+                return (
+                    <Switch>
+                        <Route exact path="/login" component={Login}/>
+                    </Switch>
+                )
+            case('admin@pinazo.com'):
+                return (
+                    <Switch>
+                        <Route exact path="/" component={Home}/>
+                        <Route exact path="/login" component={Login}/>
+                        <Route exact path="/register" component={Register}/>
+                        <Route exact path="/live" component={Live}/>
+                        <Route exact path="/operator" component={Operator}/>
+                        <Route exact path="/scheduling" component={Scheduling}/>
+                    </Switch>
+                );
+            default:
+
+                return (
+                    <Switch>
+                        <Route exact path="/" component={Home}/>
+                        <Route exact path="/live" component={Live}/>
+                        <Route exact path="/operator" component={Operator}/>
+                        <Route exact path="/scheduling" component={Scheduling}/>
+                    </Switch>
+                )
+        }
+    }
+
 
     let router = () => {
 
         return (
-                <main className={classes.content}>
-                    <div className={classes.toolbar}/>
-                    <Router history={history} forceRefresh={true}>
-                        <Switch>
-                            <Route exact path="/" component={Home}/>
-                            <Route exact path="/login" component={Login}/>
-                            <Route exact path="/register" component={Register}/>
-                            <Route exact path="/live" component={Live}/>
-                            <Route exact path="/operator" component={Operator}/>
-                            <Route exact path="/scheduling" component={Scheduling}/>
-                        </Switch>
-                    </Router>
-                </main>
+            <main className={classes.content}>
+                <div className={classes.toolbar}/>
+                <Router history={history} forceRefresh={true}>
+                    {routes()}
+                </Router>
+
+
+            </main>
         );
     }
     return (
 
 
         <div className={classes.root}>
-
             <Sidebar/>
             {router()}
         </div>

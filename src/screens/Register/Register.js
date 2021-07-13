@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useAuth} from "../../context/AuthContext";
-import {setsEqual} from "chart.js/helpers";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -57,12 +56,12 @@ export default function Register() {
 
 
     const [ email, setEmail] = useState('');
-    const [ password, setPassword] = useState();
-    const [ confirmPassword, setConfirmPassword] = useState();
+    const [ password, setPassword] = useState('');
+    const [ confirmPassword, setConfirmPassword] = useState('');
 
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    const {signup} = useAuth()
+    const {signup, currentUser} = useAuth()
 
     function Copyright() {
         return (
@@ -81,6 +80,7 @@ export default function Register() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        console.log("TESTING")
 
         if (password !== confirmPassword) {
             return setError("LAS CONTRASEÑAS NO COINCIDEN")
@@ -91,6 +91,7 @@ export default function Register() {
             setError('');
             await signup(email, password)
         } catch {
+            setLoading(false)
             return setError("ERROR AL CREAR UN NUEVO USUARIO")
 
         }
@@ -110,6 +111,7 @@ export default function Register() {
                     Registrar usuario
                 </Typography>
                 {error && <div>{error}</div>}
+                {currentUser && currentUser.email}
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <TextField
                         variant="outlined"
@@ -176,18 +178,7 @@ export default function Register() {
                     >
                         Registrar usuario
                     </Button>
-                    {/*<Grid container>*/}
-                    {/*    <Grid item xs>*/}
-                    {/*        <Link href="#" variant="body2">*/}
-                    {/*            Forgot password?*/}
-                    {/*        </Link>*/}
-                    {/*    </Grid>*/}
-                    {/*    <Grid item>*/}
-                    {/*        <Link href="#" variant="body2">*/}
-                    {/*            {"Don't have an account? Sign Up"}*/}
-                    {/*        </Link>*/}
-                    {/*    </Grid>*/}
-                    {/*</Grid>*/}
+
                 </form>
             </div>
             <Box mt={8}>

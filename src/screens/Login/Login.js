@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import {useAuth} from "../../context/AuthContext";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     colorWhite: {
         color: 'white'
     },
-    colorPrimary : {
+    colorPrimary: {
         color: '#00A8A4'
     }
 }));
@@ -55,10 +55,10 @@ export default function Login() {
 
     function Copyright() {
         return (
-            <Typography variant="body2" color="textSecondary" align="center"                         className={classes.colorWhite}
+            <Typography variant="body2" color="textSecondary" align="center" className={classes.colorWhite}
             >
                 {'Copyright © '}
-                <Link target={"_blank"} color="inherit" href="https://xymbot.com/"                         className={classes.colorWhite}
+                <Link target={"_blank"} color="inherit" href="https://xymbot.com/" className={classes.colorWhite}
                 >
                     Xymbot
                 </Link>{' '}
@@ -66,6 +66,30 @@ export default function Login() {
                 {'.'}
             </Typography>
         );
+    }
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+    const {login, currentUser} = useAuth()
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        try {
+            setLoading(true)
+            setError('');
+            await login(email, password);
+        } catch {
+            setLoading(false)
+            return setError("Usuario o contraseña erróneos")
+
+        }
+        setLoading(false)
+
+
     }
 
     return (
@@ -78,12 +102,16 @@ export default function Login() {
                 <Typography component="h1" variant="h5" className={classes.colorPrimary}>
                     Login
                 </Typography>
-                <form className={classes.form} noValidate>
+                {error && <div>{error}</div>}
+                {currentUser && currentUser.email}
+                <form className={classes.form} onSubmit={handleSubmit}>
                     <TextField
                         variant="outlined"
                         margin="normal"
                         required
                         fullWidth
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                         id="email"
                         label="Usuario"
                         name="user"
@@ -98,6 +126,8 @@ export default function Login() {
                         margin="normal"
                         required
                         fullWidth
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                         name="password"
                         label="Password"
                         type="password"
@@ -108,7 +138,7 @@ export default function Login() {
                         }}
                     />
                     <FormControlLabel
-                        control={<Checkbox value="remember"  className={classes.colorWhite}
+                        control={<Checkbox value="remember" className={classes.colorWhite}
                         />}
                         label="Remember me"
                         className={classes.colorWhite}
@@ -116,6 +146,7 @@ export default function Login() {
                     />
                     <Button
                         type="submit"
+                        disabled={loading}
                         fullWidth
                         variant="contained"
                         className={classes.submit}

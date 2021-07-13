@@ -21,9 +21,16 @@ import React from "react";
 import {useStyles} from "../../AppStyles";
 import {useTheme} from "@material-ui/core/styles";
 import history from "../../utils/history";
+import {useAuth} from "../../context/AuthContext";
+import PersonIcon from '@material-ui/icons/Person';
 
 
-export function Sidebar(){
+export function Sidebar() {
+    const classes = useStyles();
+    const theme = useTheme();
+    const [open, setOpen] = React.useState(false);
+    const {currentUser, logout} = useAuth();
+
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -32,9 +39,7 @@ export function Sidebar(){
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const classes = useStyles();
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+
     return (
         <div>
             <CssBaseline/>
@@ -56,7 +61,7 @@ export function Sidebar(){
                     >
                         <MenuIcon/>
                     </IconButton>
-                    <Typography variant="h6" >
+                    <Typography variant="h6">
                         Xymview
                     </Typography>
                 </Toolbar>
@@ -81,35 +86,67 @@ export function Sidebar(){
                     </IconButton>
                 </div>
                 <List>
-                    <ListItem button onClick={()=> {
-                        history.push('/live');
+                    {currentUser ? <div>
+                            <ListItem button onClick={() => {
+                                history.push('/live');
+                                window.location.reload()
+                            }}>
+                                <ListItemIcon><EqualizerIcon style={{color: '#00A8A4'}}/></ListItemIcon>
+                                <ListItemText primary={"Producción"} style={{color: '#00A8A4'}}/>
+                            </ListItem>
+                            <ListItem button onClick={() => {
+                                history.push('/scheduling');
+                                window.location.reload()
+                            }}>
+                                <ListItemIcon><ScheduleIcon style={{color: '#00A8A4'}}/></ListItemIcon>
+                                <ListItemText primary={"Scheduling"} style={{color: '#00A8A4'}}/>
+                            </ListItem>
+                            <ListItem button onClick={() => {
+                                history.push('/operator ');
+                                window.location.reload()
+                            }}>
+                                <ListItemIcon><PeopleIcon style={{color: '#00A8A4'}}/></ListItemIcon>
+                                <ListItemText primary={"Operarios"} style={{color: '#00A8A4'}}/>
+                            </ListItem></div> :
+                        <div>
+                            <ListItem button onClick={() => {
+                                history.push('/login');
+                                window.location.reload()
+                            }}>
+                                <ListItemIcon><PersonIcon style={{color: '#00A8A4'}}/></ListItemIcon>
+                                <ListItemText primary={"Login"} style={{color: '#00A8A4'}}/>
+                            </ListItem>
+                        </div>
+                    }
+                    {(currentUser?.email == 'admin@pinazo.com') && <ListItem button onClick={() => {
+                        history.push('/register');
                         window.location.reload()
                     }}>
-                        <ListItemIcon><EqualizerIcon style={{color: '#00A8A4'}}/></ListItemIcon>
-                        <ListItemText primary={"Producción"} style={{color: '#00A8A4'}}/>
+                        <ListItemIcon><PersonIcon style={{color: '#00A8A4'}}/></ListItemIcon>
+                        <ListItemText primary={"Registrar usuario"} style={{color: '#00A8A4'}}/>
                     </ListItem>
-                    <ListItem button onClick={()=> {
-                        history.push('/operator');
-                        window.location.reload()
-                    }}>
-                        <ListItemIcon><PeopleIcon style={{color: '#00A8A4'}}/></ListItemIcon>
-                        <ListItemText primary={"Operarios"} style={{color: '#00A8A4'}}/>
-                    </ListItem>
-                    <ListItem button onClick={()=> {
-                        history.push('/scheduling');
-                        window.location.reload()
-                    }}>
-                        <ListItemIcon><ScheduleIcon style={{color: '#00A8A4'}}/></ListItemIcon>
-                        <ListItemText primary={"Scheduling"} style={{color: '#00A8A4'}}/>
-                    </ListItem>
+                    }
+
 
                 </List>
                 <List style={{marginTop: 'auto'}}>
                     <Divider/>
-                    <ListItem button>
-                        <ListItemIcon><LogoutIcon style={{color: '#00A8A4'}}/></ListItemIcon>
-                        <ListItemText primary={"Cerrar sesión"} style={{color: '#00A8A4'}}/>
-                    </ListItem>
+                    {currentUser ?
+                        <div>
+
+
+                            <ListItem button onClick={logout}>
+                                <ListItemIcon><PersonIcon style={{color: '#00A8A4'}}/></ListItemIcon>
+                                <ListItemText primary={"Perfil de usuario"} style={{color: '#00A8A4'}}/>
+                            </ListItem>
+                            <ListItem button onClick={logout}>
+                                <ListItemIcon><LogoutIcon style={{color: '#00A8A4'}}/></ListItemIcon>
+                                <ListItemText primary={"Cerrar sesión"} style={{color: '#00A8A4'}}/>
+                            </ListItem>
+                        </div> :
+
+                        <div></div>}
+
                 </List>
             </Drawer>
         </div>
