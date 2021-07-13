@@ -111,7 +111,6 @@ export default function Register() {
                     Registrar usuario
                 </Typography>
                 {error && <div>{error}</div>}
-                {currentUser && currentUser.email}
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <TextField
                         variant="outlined"

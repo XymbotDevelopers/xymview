@@ -135,7 +135,10 @@ export function Sidebar() {
                         <div>
 
 
-                            <ListItem button onClick={logout}>
+                            <ListItem button onClick={() => {
+                                history.push('/profile');
+                                window.location.reload()}
+                            }>
                                 <ListItemIcon><PersonIcon style={{color: '#00A8A4'}}/></ListItemIcon>
                                 <ListItemText primary={"Perfil de usuario"} style={{color: '#00A8A4'}}/>
                             </ListItem>

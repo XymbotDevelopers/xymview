@@ -10,6 +10,7 @@ import {createBrowserHistory} from "history";
 import Login from "./screens/Login/Login";
 import Register from "./screens/Register/Register";
 import {useAuth} from "./context/AuthContext";
+import Profile from "./screens/Profile/Profile";
 
 
 export default function App() {
@@ -34,6 +35,8 @@ export default function App() {
                         <Route exact path="/live" component={Live}/>
                         <Route exact path="/operator" component={Operator}/>
                         <Route exact path="/scheduling" component={Scheduling}/>
+                        <Route exact path="/profile" component={Profile}/>
+
                     </Switch>
                 );
             default:
@@ -44,6 +47,7 @@ export default function App() {
                         <Route exact path="/live" component={Live}/>
                         <Route exact path="/operator" component={Operator}/>
                         <Route exact path="/scheduling" component={Scheduling}/>
+                        <Route exact path="/profile" component={Profile}/>
                     </Switch>
                 )
         }
