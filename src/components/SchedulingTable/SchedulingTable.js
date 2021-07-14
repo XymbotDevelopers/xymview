@@ -163,6 +163,7 @@ export default function SchedulingTable(props) {
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [open, setOpen] = React.useState(false);
+    const [selectedRow, setSelectedRow] = React.useState({});
 
     const handleOpen = () => {
         setOpen(true);
@@ -267,8 +268,15 @@ export default function SchedulingTable(props) {
                                             <TableCell align="right">{row.fechaInicio}</TableCell>
                                             <TableCell align="right">{row.fechaFin}</TableCell>
                                             <TableCell align="right">
-                                                <EditIcon onClick={handleOpen}/>
-                                                <DeleteOutlineIcon onClick={() => {console.log(row)}}/>
+                                                <EditIcon onClick={()=>{
+                                                    setSelectedRow(row);
+                                                    handleOpen();
+                                                }
+
+                                                }/>
+                                                <DeleteOutlineIcon onClick={() => {
+                                                    console.log(row)
+                                                }}/>
                                             </TableCell>
                                         </TableRow>
                                     );
@@ -290,7 +298,7 @@ export default function SchedulingTable(props) {
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
-                <EditModal open={open} handleClose={handleClose}></EditModal>
+                <EditModal open={open} handleClose={handleClose} row={selectedRow}></EditModal>
             </Card>
 
     );
