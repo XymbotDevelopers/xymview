@@ -10,6 +10,9 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import TextField from "@material-ui/core/TextField";
 import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import {ChartOperatorsProduction} from "../../components/ChartOperatorsProduction/ChartOperatorsProduction";
+import ProductionPlanTable from "../../components/ProductionPlanTable/ProductionPlanTable";
+import SchedulingTable from "../../components/SchedulingTable/SchedulingTable";
 
 export default function Scheduling() {
     const classes = useStyles();
@@ -19,6 +22,7 @@ export default function Scheduling() {
     const [numPieces, setNumPieces] = useState(100);
     const [dateFrom, setDateFrom] = useState();
     const [dateTo, setDateTo] = useState();
+    const [turns, setTurns] = useState(0);
 
 
     let sendData = async (values) => {
@@ -36,10 +40,8 @@ export default function Scheduling() {
         return response.json(); // parses JSON response into native JavaScript objects
     }
 
-
-    return (
-        <Container component="main" maxWidth="md">
-            <CssBaseline/>
+    let scheduleForm = () => {
+        return(
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                     <ScheduleIcon/>
@@ -48,7 +50,7 @@ export default function Scheduling() {
                     Planificar producción
                 </Typography>
                 <form className={classes.form}>
-                    <FormControl variant="outlined" className={classes.select}>
+                    <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel id="pieza-label">Pieza</InputLabel>
                         <Select
                             labelId={"pieza-label"}
@@ -62,12 +64,14 @@ export default function Scheduling() {
                             label={"Pieza"}
                             name="piece"
                             autoFocus
+                            className={classes.field}
+
                         >
                             <MenuItem value={"1"}>PRUEBA</MenuItem>
                         </Select>
                     </FormControl>
 
-                    <FormControl variant="outlined" className={classes.select}>
+                    <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel id="press-label">Prensa</InputLabel>
                         <Select
                             labelId={"press-label"}
@@ -80,14 +84,14 @@ export default function Scheduling() {
                             value={press}
                             label={"Prensa"}
                             name="press"
-
+                            className={classes.field}
                         >
                             <MenuItem value={"1"}>PRENSA 1</MenuItem>
                             <MenuItem value={"2"}>PRENSA 2</MenuItem>
                         </Select>
                     </FormControl>
 
-                    <FormControl variant="outlined" className={classes.input}>
+                    <FormControl variant="outlined" className={classes.formControl}>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -98,28 +102,30 @@ export default function Scheduling() {
                             label="Número de piezas"
                             type="number"
                             id="numPieces"
-                            InputProps={{
-                                step: 10,
-                                className: classes.field
+                            inputProps={{
+                                step: 100,
                             }}
+                            className={classes.field}
+
                         />
                     </FormControl>
-                    <FormControl variant="outlined" className={classes.input}>
-                        <Typography id="">Fecha inicio</Typography>
+                    <div>
 
+                    </div>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <Typography id="" variant={"body2"}>Fecha inicio</Typography>
                         <TextField
                             variant="outlined"
                             margin="normal"
-                            fullWidth
                             value={dateFrom}
                             onChange={(e)=> setDateFrom(e.target.value)}
                             name="dateTo"
                             type="datetime-local"
                             id="dateTo"
-                            InputProps={{
-                                className: classes.field
-                            }}
                         />
+
+
+
                     </FormControl>
                     <FormControl variant="outlined" className={classes.input}>
                         <Typography id="">Fecha fin</Typography>
@@ -139,6 +145,24 @@ export default function Scheduling() {
                         />
                     </FormControl>
 
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            fullWidth
+                            value={turns}
+                            onChange={(e)=> setTurns(e.target.value)}
+                            name="numTurns"
+                            label="Número de turnos"
+                            type="number"
+                            id="numTurns"
+                            InputProps={{
+                                step: 10,
+                                className: classes.field
+                            }}
+                        />
+                    </FormControl>
+
 
 
                     <Button
@@ -153,9 +177,21 @@ export default function Scheduling() {
 
                 </form>
             </div>
-        </Container>
+        );
+    }
+
+    return (
+        <div>
+            <Container component="main" maxWidth="md">
+                <CssBaseline/>
+                {scheduleForm()}
+            </Container>
+            <SchedulingTable></SchedulingTable>
+        </div>
 
 
-    );
+
+
+);
 
 }

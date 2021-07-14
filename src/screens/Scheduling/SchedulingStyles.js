@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(8),
+        marginTop: theme.spacing(4),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -25,23 +25,42 @@ export const useStyles = makeStyles((theme) => ({
         color: 'white'
     },
     field: {
-        color: '#0f3349'
+        color: '#0f3349',
+    },
+    formControl: {
+        width: '100%',
+        marginTop: '1em',
     },
     colorWhite: {
         color: 'white'
-    },
+    }
+    ,
     colorPrimary: {
         color: '#00A8A4'
-    },
+    }
+    ,
     select: {
         marginTop: '1.5em',
-        width: '100%',
-    },
-    input: {
-        width: '100%',
-        marginTop: '0.5em'
-    }
+        width
+    :
+    '100%',
+}
+,
+input: {
+    width: '100%',
+}
+,
+textField: {
+    marginLeft: theme.spacing(0),
+        marginRight
+:
+    theme.spacing(0),
+        width
+:
+    300,
+}
+,
 
 
-    }))
+}))
 ;
