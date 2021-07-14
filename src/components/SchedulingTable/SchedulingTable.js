@@ -13,6 +13,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import {EditModal} from './../../components/EditModal/EditModal'
 
 
 function createData(descripcion, prensa, piezas, fechaInicio, fechaFin) {
@@ -137,10 +138,21 @@ const useStyles = makeStyles((theme) => ({
         width: '90vw',
 
     },
-    // table:{
-    //         minWidth: 100,
-    // }
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paperModal: {
+        backgroundColor: theme.palette.background.paper,
+        borderRadius: '10px',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+
 }));
+
+
 
 export default function SchedulingTable(props) {
     const classes = useStyles();
@@ -150,12 +162,22 @@ export default function SchedulingTable(props) {
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
+
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
@@ -245,7 +267,7 @@ export default function SchedulingTable(props) {
                                             <TableCell align="right">{row.fechaInicio}</TableCell>
                                             <TableCell align="right">{row.fechaFin}</TableCell>
                                             <TableCell align="right">
-                                                <EditIcon onClick={() => {console.log(row)}}/>
+                                                <EditIcon onClick={handleOpen}/>
                                                 <DeleteOutlineIcon onClick={() => {console.log(row)}}/>
                                             </TableCell>
                                         </TableRow>
@@ -268,6 +290,7 @@ export default function SchedulingTable(props) {
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
+                <EditModal open={open} handleClose={handleClose}></EditModal>
             </Card>
 
     );
