@@ -4,14 +4,21 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import ScheduleIcon from "@material-ui/icons/Schedule";
+import TextField from "@material-ui/core/TextField";
+import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 export default function Scheduling() {
     const classes = useStyles();
 
-    const [client, setClient] = useState(null);
-    const [connectStatus, setConnectStatus] = useState("");
-    const mqttConnect = (host, mqttOption) => {
-    };
+    const [piece, setPiece] = useState('');
+    const [press, setPress] = useState('');
+    const [numPieces, setNumPieces] = useState(100);
+    const [dateFrom, setDateFrom] = useState();
+    const [dateTo, setDateTo] = useState();
 
 
     let sendData = async (values) => {
@@ -31,58 +38,122 @@ export default function Scheduling() {
 
 
     return (
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="md">
             <CssBaseline/>
             <div className={classes.paper}>
-        <Formik
-            initialValues={{id: '', prensa: '', piezas: '', date_start: '', date_end: ''}}
-            validate={values => {
-                const errors = {};
-                if (!values.id) {
-                    errors.id = 'Required';
-                }
-                return errors;
-            }}
-            onSubmit={async (values, {setSubmitting}) => {
-                console.log(JSON.stringify(values))
-                await sendData(values);
-                setSubmitting(false);
-            }}
-        >
-            {({isSubmitting}) => (
-                <Form className={ classes.form}>
-                    <div className={classes.row}>
-                        <Typography title={"id"} className="label">ID</Typography>
-                        <Field type="id" name="id" className="field"/>
-                        <ErrorMessage name="id" component="div"/>
-                    </div>
-                    <div className={classes.row}>
-                        <Typography title={"id"} className="label">Prensa</Typography>
-                        <Field type="number" name="prensa" className="field"/>
-                        <ErrorMessage name="prensa" component="div"/>
-                    </div>
-                    <div className={classes.row}>
-                        <Typography title={"id"} className="label">Piezas</Typography>
-                        <Field type="number" name="piezas" className="field"/>
-                        <ErrorMessage name="piezas" component="div"/>
-                    </div>
-                    <div className={classes.row}>
-                        <Typography title={"id"} className="label">Fecha inicio</Typography>
-                        <Field type="date" name="date_start" className="field"/>
-                        <ErrorMessage name="date_start" component="div"/>
-                    </div>
-                    <div className={classes.row}>
-                        <Typography title={"id"} className="label">Fecha fin</Typography>
-                        <Field type="date" name="date_end" className="field"/>
-                        <ErrorMessage name="date_end" component="div"/>
-                    </div>
-                    <button type="submit" className={classes.button} disabled={isSubmitting}>
-                        Enviar
-                    </button>
-                </Form>
-            )}
-        </Formik>
-            </div></Container>
+                <Avatar className={classes.avatar}>
+                    <ScheduleIcon/>
+                </Avatar>
+                <Typography component="h1" variant="h5" className={classes.colorPrimary}>
+                    Planificar producción
+                </Typography>
+                <form className={classes.form}>
+                    <FormControl variant="outlined" className={classes.select}>
+                        <InputLabel id="pieza-label">Pieza</InputLabel>
+                        <Select
+                            labelId={"pieza-label"}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="piece"
+                            onChange={(e) => setPiece(e.target.value)}
+                            value={piece}
+                            label={"Pieza"}
+                            name="piece"
+                            autoFocus
+                        >
+                            <MenuItem value={"1"}>PRUEBA</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <FormControl variant="outlined" className={classes.select}>
+                        <InputLabel id="press-label">Prensa</InputLabel>
+                        <Select
+                            labelId={"press-label"}
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="press"
+                            onChange={(e) => setPress(e.target.value)}
+                            value={press}
+                            label={"Prensa"}
+                            name="press"
+
+                        >
+                            <MenuItem value={"1"}>PRENSA 1</MenuItem>
+                            <MenuItem value={"2"}>PRENSA 2</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    <FormControl variant="outlined" className={classes.input}>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            fullWidth
+                            value={numPieces}
+                            onChange={(e)=> setNumPieces(e.target.value)}
+                            name="numPieces"
+                            label="Número de piezas"
+                            type="number"
+                            id="numPieces"
+                            InputProps={{
+                                step: 10,
+                                className: classes.field
+                            }}
+                        />
+                    </FormControl>
+                    <FormControl variant="outlined" className={classes.input}>
+                        <Typography id="">Fecha inicio</Typography>
+
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            fullWidth
+                            value={dateFrom}
+                            onChange={(e)=> setDateFrom(e.target.value)}
+                            name="dateTo"
+                            type="datetime-local"
+                            id="dateTo"
+                            InputProps={{
+                                className: classes.field
+                            }}
+                        />
+                    </FormControl>
+                    <FormControl variant="outlined" className={classes.input}>
+                        <Typography id="">Fecha fin</Typography>
+
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            fullWidth
+                            value={dateTo}
+                            onChange={(e)=> setDateTo(e.target.value)}
+                            name="dateTo"
+                            type={"datetime-local"}
+                            id="dateTo"
+                            InputProps={{
+                                className: classes.field
+                            }}
+                        />
+                    </FormControl>
+
+
+
+                    <Button
+                        fullWidth
+                        // disabled={loading}
+                        type={"submit"}
+                        variant="contained"
+                        className={classes.submit}
+                    >
+                        Añadir
+                    </Button>
+
+                </form>
+            </div>
+        </Container>
 
 
     );

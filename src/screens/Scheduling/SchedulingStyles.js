@@ -25,7 +25,6 @@ export const useStyles = makeStyles((theme) => ({
         color: 'white'
     },
     field: {
-        backgroundColor: 'white',
         color: '#0f3349'
     },
     colorWhite: {
@@ -33,6 +32,14 @@ export const useStyles = makeStyles((theme) => ({
     },
     colorPrimary: {
         color: '#00A8A4'
+    },
+    select: {
+        marginTop: '1.5em',
+        width: '100%',
+    },
+    input: {
+        width: '100%',
+        marginTop: '0.5em'
     }
 
 
