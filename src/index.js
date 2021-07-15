@@ -3,16 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Auth0Provider} from "@auth0/auth0-react";
 import {AuthProvider} from "./context/AuthContext";
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+
+const client = new ApolloClient({
+    uri: 'https://api.spacex.land/graphql/'
+});
 
 ReactDOM.render(
-    <AuthProvider>
-        <React.StrictMode>
-            <App/>
-        </React.StrictMode>
-    </AuthProvider>
-    ,
+    <ApolloProvider client={client}>
+        <AuthProvider>
+            <React.StrictMode>
+                <App/>
+            </React.StrictMode>
+        </AuthProvider>
+    </ApolloProvider>,
 
     document.getElementById('root')
 );

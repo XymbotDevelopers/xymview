@@ -5,10 +5,10 @@ import {Card, CardHeader, Grid, InputLabel, MenuItem, Select, TextField} from "@
 import {ChartText} from "../../components/ChartText/ChartText"
 import {GaugeChart} from "../../components/GaugeChart/GaugeChart"
 import {ProductionChart} from "../../components/ProductionChart/ProductionChart";
-import {fetch} from "../../utils/fetch";
 import {ChartOperatorsProduction} from "../../components/ChartOperatorsProduction/ChartOperatorsProduction";
 import ProductionPlanTable from '../../components/ProductionPlanTable/ProductionPlanTable'
-import Container from "@material-ui/core/Container";
+import { useQuery } from '@apollo/react-hooks';
+import {GET_PIECES} from "../../queries/queries.js";
 
 export default function Live() {
     const classes = useStyles();
@@ -71,6 +71,14 @@ export default function Live() {
     const turns = [
         "day", "night"
     ];
+
+
+
+    const getTotalPieces = useQuery(GET_PIECES);
+
+    useEffect(async ()=>{
+        console.log(setTotal(getTotalPieces.data.launches[0].id))
+    },[])
 
     const handleChange = (event) => {
         console.log(event)
@@ -232,13 +240,13 @@ export default function Live() {
                 <Grid item xs={12} style={{display: "flex", justifyContent: "center"}}>
                     <ProductionPlanTable title={"Table"}></ProductionPlanTable>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={4}>
                     <ChartOperatorsProduction title={"Rendimiento operarios"}></ChartOperatorsProduction>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={4}>
                     <ChartOperatorsProduction title={"Rendimiento piezas"}></ChartOperatorsProduction>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={4}>
                     <ChartOperatorsProduction title={"Rendimiento turnos"}></ChartOperatorsProduction>
                 </Grid>
 

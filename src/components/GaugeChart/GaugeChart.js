@@ -45,11 +45,8 @@ export function GaugeChart(props) {
                     stops: [0, 50, 65, 91]
                 },
             },
-            stroke: {
-                dashArray: 2
-            },
-            labels: [''],
 
+            labels: [''],
         }
 
 
